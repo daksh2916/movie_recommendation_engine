@@ -33,3 +33,16 @@ class UserProfile(Base):
     config_id = Column(UUID(as_uuid=True), ForeignKey("feature_config.id"))
     preferences = Column(ARRAY(Integer))  # vector of integers
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+class Movie(Base):
+    __tablename__ = "movies"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    title = Column(String, nullable=False)
+    genres = Column(ARRAY(String), nullable=False)
+    director = Column(String, nullable=False)
+    actors = Column(ARRAY(String), nullable=False)
+    production_house = Column(String, nullable=False)
+    release_year = Column(Integer, nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())

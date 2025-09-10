@@ -14,6 +14,7 @@ def init_features():
     existing = session.query(FeatureConfig).first()
     if existing:
         session.close()
+        print("Features already initialized.")
         return {"message": "Features already initialized."}
     
     config = FeatureConfig(id=uuid.uuid4(), version=1)
