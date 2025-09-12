@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, ARRAY, func
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, ARRAY, func, Float
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from app.db.db import Base
@@ -31,7 +31,7 @@ class UserProfile(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     user_id = Column(UUID(as_uuid=True), nullable=False)
     config_id = Column(UUID(as_uuid=True), ForeignKey("feature_config.id"))
-    preferences = Column(ARRAY(Integer))  # vector of integers
+    preferences = Column(ARRAY(Float))  # vector of floats
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 
